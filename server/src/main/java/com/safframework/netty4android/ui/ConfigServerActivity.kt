@@ -26,13 +26,15 @@ class ConfigServerActivity : AppCompatActivity(){
 
         if (intent.extras!=null) {
 
-            val port = intent.extras.getInt("port")
+            val port = intent.extras?.getInt("port")
             port_edit.text = Editable.Factory.getInstance().newEditable(port.toString())
             port_edit.setSelection(port_edit.text.toString().length)
 
-            val webSocketPath = intent.extras.getString("webSocketPath")
+            val webSocketPath = intent.extras?.getString("webSocketPath")
             web_socket_path_edit.text = Editable.Factory.getInstance().newEditable(webSocketPath)
-            web_socket_path_edit.setSelection(webSocketPath.length)
+            if (webSocketPath != null) {
+                web_socket_path_edit.setSelection(webSocketPath.length)
+            }
         }
 
         update.setOnClickListener {
